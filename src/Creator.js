@@ -17,7 +17,7 @@ class Creator {
   async fetchRepo() {
     let repos = await wrapLoading(fetchRepoList, 'waiting fetch template.');
     if (!repos) return false;
-    repos = repos.map(item => item.name);
+    repos = repos.filter(item => item.name.includes('template')).map(item => item.name);
 
     let repo = await Inquirer.prompt({
       name: 'repo',
